@@ -1,7 +1,7 @@
-interface TextProps<T> {
+type TextProps<T extends React.ElementType = 'span'> = {
     as?: T,
     children: React.ReactNode,
-};
+} & React.ComponentPropsWithoutRef<T>;
 
 /**
  * Render a polymorphic Text Component.
@@ -9,12 +9,13 @@ interface TextProps<T> {
  * @param children - The children to render within the component
  * @returns The constructed Text component
  */
-const Text = <T extends React.ElementType> ({
+const Text = <T extends React.ElementType = 'span'> ({
     as,
-    children
+    children,
+    ...attributes
 }: TextProps<T>) => {
     const Component = as || 'span';
-    return <Component>{children}</Component>;
+    return <Component {...attributes}>{children}</Component>;
 };
 
 export default Text;

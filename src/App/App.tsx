@@ -6,6 +6,7 @@ const App = () => (
     <Text>Hello World</Text>
     <Text as="h1">Hello World</Text>
     <Text as="h2">Hello World</Text>
+    <Text as="a" href="https://google.com">Magic Link!</Text>
   </div>
 );
 
