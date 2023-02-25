@@ -15,6 +15,8 @@ const App = () => (
     <Text>Test</Text>
     <br />
     <Text as={Emphasis}>Emphasised Text</Text>
+    <br />
+    <Text color="violet" style={{background: 'black'}}>Color Test</Text>
   </div>
 );
 

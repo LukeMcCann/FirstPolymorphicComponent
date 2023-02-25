@@ -1,7 +1,19 @@
+type Rainbow =
+    | 'red'
+    | 'orange'
+    | 'yellow'
+    | 'green'
+    | 'blue'
+    | 'indigo'
+    | 'violet'
+
 type TextProps<T extends React.ElementType> = {
     as?: T,
-    children: React.ReactNode,
-} & React.ComponentPropsWithoutRef<T>;
+    color?: Rainbow | 'black',
+};
+
+type Props<T extends React.ElementType> = React.PropsWithChildren<TextProps<T>> &
+    Omit<React.ComponentPropsWithoutRef<T>, keyof TextProps<T>>
 
 /**
  * Render a polymorphic Text Component.
@@ -11,11 +23,14 @@ type TextProps<T extends React.ElementType> = {
  */
 const Text = <T extends React.ElementType = 'span'> ({
     as,
+    style,
+    color,
     children,
     ...attributes
-}: TextProps<T>) => {
+}: Props<T>) => {
     const Component = as || 'span';
-    return <Component {...attributes}>{children}</Component>;
+    const internalStyles = color ? { style: { ...style, color }} : {};
+    return <Component {...attributes} {...internalStyles}>{children}</Component>;
 };
 
 export default Text;

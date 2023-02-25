@@ -48,3 +48,11 @@ test('Renders a component correctly when utilising custom components', () => {
     expect(customComponent).toHaveStyle('background: yellow; color: black');
     expect(customComponent.tagName).toBe('EM');
 });
+
+test('Renders a component correctly when passing additional attributes.', () => {
+    render(<Text color="violet" style={{background: 'black'}}>Should use a custom style and color.</Text>);
+
+    const textComponent = screen.getByText(/.*style and color.*/);
+
+    expect(textComponent).toHaveStyle('color: violet; background: black');
+});
