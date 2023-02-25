@@ -35,3 +35,16 @@ test('Renders a Text component as the correct component when specified.', () => 
     expect(paragraphElement.tagName).toBe('P');
     expect(divElement.tagName).toBe('DIV');
 });
+
+test('Renders a component correctly when utilising custom components', () => {
+    const Highlight = ({ children }: { children: React.ReactText}) => (
+        <em style={{ background: 'yellow', color: 'black'}}>{children}</em>
+    );
+
+    render(<Text as={Highlight}>Should use a custom component in render.</Text>);
+
+    const customComponent = screen.getByText(/.*custom.*/);
+
+    expect(customComponent).toHaveStyle('background: yellow; color: black');
+    expect(customComponent.tagName).toBe('EM');
+});

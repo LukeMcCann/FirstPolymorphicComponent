@@ -1,4 +1,4 @@
-type TextProps<T extends React.ElementType = 'span'> = {
+type TextProps<T extends React.ElementType> = {
     as?: T,
     children: React.ReactNode,
 } & React.ComponentPropsWithoutRef<T>;
