@@ -1,5 +1,5 @@
-interface TextProps {
-    as?: any,
+interface TextProps<T> {
+    as?: T,
     children: React.ReactNode,
 };
 
@@ -9,10 +9,10 @@ interface TextProps {
  * @param children - The children to render within the component
  * @returns The constructed Text component
  */
-const Text = ({
+const Text = <T extends React.ElementType> ({
     as,
     children
-}: TextProps) => {
+}: TextProps<T>) => {
     const Component = as || 'span';
     return <Component>{children}</Component>;
 };
